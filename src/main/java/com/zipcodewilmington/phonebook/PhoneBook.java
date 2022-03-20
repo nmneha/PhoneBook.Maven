@@ -58,11 +58,11 @@ public class PhoneBook {
 
     public String reverseLookup(String phoneNumber)  {
         for (Map.Entry<String,List<String>>phonebook : phonebook.entrySet()) {
-            String key = phonebook.getKey();
-            List<String> value = phonebook.getValue();
-            for(String numbers : value) {
-                if (numbers == phoneNumber) {
-                    return key;
+            String name = phonebook.getKey();
+            List<String> phoneNumbers = phonebook.getValue();
+            for(String number : phoneNumbers) {
+                if (number == phoneNumber) {
+                    return name;
                 }
             }
 
@@ -71,7 +71,7 @@ public class PhoneBook {
     }
 
     public List<String> getAllContactNames() {
-        return null;
+        return (List<String>) phonebook.keySet();
     }
 
     public Map<String, List<String>> getMap() {
