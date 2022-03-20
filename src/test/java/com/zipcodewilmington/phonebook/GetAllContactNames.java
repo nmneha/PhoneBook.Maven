@@ -38,7 +38,6 @@ public class GetAllContactNames {
         List<String> actualNames = phoneBook.getAllContactNames();
 
         // then
-        System.out.println(Arrays.asList(names));
         Assert.assertEquals(Arrays.asList(names), actualNames);
     }
 
