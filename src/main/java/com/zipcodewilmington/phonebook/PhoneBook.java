@@ -27,29 +27,46 @@ public class PhoneBook {
         if (phonebook.containsKey(name)) {
             phonebook.get(name).add(phoneNumber);
         } else {
-            List<String> number = new LinkedList<>();
+            List<String> number = new ArrayList<>();
             number.add(phoneNumber);
             phonebook.put(name, number);
         }
     }
 
-    public void addAll(String name, String... phoneNumbers) {
+    /*
+    if (phonebook.get(name) == null) {
+        phonebook.put(name, new ArrayList<>);
+        }
+        phonebook.get(name).add(phoneNumber);
+     */
 
+    public void addAll(String name, String... phoneNumbers) {
+        phonebook.computeIfAbsent(name, k -> new ArrayList<>(Arrays.asList(phoneNumbers)));
     }
 
     public void remove(String name) {
-
+        phonebook.remove(name);
     }
 
     public Boolean hasEntry(String name) {
-        return null;
+       return phonebook.containsKey(name);
     }
 
     public List<String> lookup(String name) {
-        return null;
+            return phonebook.get(name);
     }
 
     public String reverseLookup(String phoneNumber)  {
+        for (Map.Entry<String,List<String>>phonebook : phonebook.entrySet()) {
+            String key = phonebook.getKey();
+            List<String> value = phonebook.getValue();
+            for(String numbers : value) {
+                if (numbers == phoneNumber) {
+                    return key;
+                }
+            }
+
+        }
         return null;
     }
 
